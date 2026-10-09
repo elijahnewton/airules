@@ -12,3 +12,5 @@ a class or module should have one responsibility, if you're using and to describ
 
 handle errors properly, use exceptions, not silently ignored error codes or magic return values, do not pass or return null where it can be avoided
 keep tests clean too, a messy test file is technical debt, tests should be fast, independent of each other,repeatable, self verifying
+build for the requirement infront of you, not the hypothetical one. simpler and shorter beats clever.
+every change needs test coverage, write tests and actually run them locally before opening a pr
