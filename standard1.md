@@ -11,7 +11,7 @@ Priority: correctness/security > project conventions > tests/CI > readability > 
 
 ## Design
 - Single responsibility. One abstraction level per function. Small functions, 0–3 params (else param object).
-- Prefer guard clauses/early returns. Max 2–3 nesting levels.
+- Prefer guard clauses/early returns. Max 2–3 nesting levels. (if avoidable , avoid nesting if statements)
 - DRY after rule of three. YAGNI. Simpler beats clever. Avoid god classes, deep inheritance, premature abstraction.
 
 ## Naming & Comments
