@@ -1,16 +1,37 @@
-avoid nested if staements.
-use descriptive names.
-if you need to write a whole line of comment to describe a method then that method name is wrong.comments explain why not what, because the code already says what it does
-a method's scope should not go beyond one specific functionality.
-we do not push code to main, first is feature branch then pr to develop branch if available then main or feature pr to main if develop does not exist
 
-a variable, function, or classname should say what it does.if you need to write a whole line of comment to describe then that method name is wrong 
-delete commented out code intead of leaving it as souvenir.
-keep functions as small as possible with one level of abstraction with as few parameters as resonably possible
-DRY Dont Repeat yourself. if youre pasting the same logic a second time then it belongs in a shared function instead.
-a class or module should have one responsibility, if you're using and to describe it then its doing too much
+# AI Coding Rules
 
-handle errors properly, use exceptions, not silently ignored error codes or magic return values, do not pass or return null where it can be avoided
-keep tests clean too, a messy test file is technical debt, tests should be fast, independent of each other,repeatable, self verifying
-build for the requirement infront of you, not the hypothetical one. simpler and shorter beats clever.
-every change needs test coverage, write tests and actually run them locally before opening a pr
+Priority: correctness/security > project conventions > tests/CI > readability > style. Break a rule only with documented reason.
+
+## Workflow
+- No direct pushes to protected `main`/`develop`. Feature branch -> PR to `develop` if it exists, else `main`.
+- Keep PRs small, focused, single-purpose. Never commit secrets, debug prints, dead code, commented-out code, or fabricated results.
+- Run formatter, linter, typecheck, tests locally before PR. CI is final gate.
+- Never merge, force-push shared branches, or bypass CI.
+
+## Design
+- Single responsibility. One abstraction level per function. Small functions, 0–3 params (else param object).
+- Prefer guard clauses/early returns. Max 2–3 nesting levels.
+- DRY after rule of three. YAGNI. Simpler beats clever. Avoid god classes, deep inheritance, premature abstraction.
+
+## Naming & Comments
+- Names reveal intent. Rename instead of explaining via comment.
+- Comments explain why, constraints, invariants, tradeoffs, links. Public APIs may document contracts/exceptions.
+- Delete commented-out code.
+
+## Errors & Data
+- Handle errors explicitly. No silent swallowing, magic returns, sentinel errors.
+- Avoid null as control flow. Prefer empty collections, Optional/Result, explicit error types where idiomatic.
+- Validate at boundaries. Add context when propagating errors.
+
+## Tests
+- Behavior changes need tests; bug fixes need regression tests.
+- Tests: fast, independent, repeatable, self-verifying, deterministic. No shared state/order dependence.
+- Keep tests clean. Run locally before PR.
+
+## AI-Specific
+- Read before writing. Match existing style/patterns. Don't rewrite unrelated code.
+- Don't invent APIs/libraries/configs/commands. Verify.
+- Keep diffs small and single-concern.
+- If ambiguous, state assumptions or ask.
+- Prefer boring, maintainable solutions.
